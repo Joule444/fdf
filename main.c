@@ -6,13 +6,12 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/14 15:44:26 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:25:02 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 #include <stdio.h>
-
 
 //Verifie l'extension du fichier
 int	check_file(char *file)
@@ -28,13 +27,19 @@ int	check_file(char *file)
 
 void	mlx_window(void)
 {
-	
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	(void) mlx_win;
+	mlx_loop(mlx);
 }
 
 int	main(int argc, char **argv)
 {
 	char	*file;
-	int		fd;
+	// int		fd;
 
 	file = argv[1];
 	if (argc != 2)
@@ -43,4 +48,5 @@ int	main(int argc, char **argv)
 		return (0);
 	// fd = open(file, O_RDONLY, 777);
 	// printf("%s", get_next_line(fd));
+	mlx_window();
 }

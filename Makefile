@@ -1,22 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/14 12:36:07 by jthuysba          #+#    #+#              #
-#    Updated: 2022/10/14 15:35:25 by jthuysba         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME        = FdF
+NAME        = fdf
 
 LIB_DIR        = ./libft
 
+MLX_DIR     = ./mlx
+
 LIBFT        = ./libft/libft.a
 
-SRCS        = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+MLX        = ./mlx/libmlx.a
+
+SRCS        = main.c
 
 OBJS        = ${SRCS:.c=.o}
 
@@ -24,36 +16,47 @@ RM        = rm -f
 
 CC        = gcc
 
-FLAGS        = -Wall -Wextra -Werror -g -I includes/
+FLAGS        = -Wall -Wextra -Werror -g3
+
+FLAGS_LIB    = -lXext -lX11
 
 all        : ${NAME}
 
-%.o: %.c
-		  @${CC} ${FLAGS} -Imlx -c $< -o ${<:.c=.o}
+.c.o        :
+		  @${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${LIBFT}    :
-		  @echo "\033[1;36m>>BUILDING LIBFT"
+		  @echo "\033[35m----Building libft----"
 		  @make -sC ${LIB_DIR}
-		  @echo ">>OK!\n~ ~ ~ ~ ~"
+		  @echo "OK"
 
-${NAME}        : ${OBJS} ${LIBFT}
-		  @echo "\033[1;35m>>COMPILING"
-		  @${CC} ${FLAGS} ${OBJS} -L/usr/include  -lpthread -L -lm -o ${NAME} ${LIBFT}
-		  @echo ">>OK!"
+${MLX}        :
+		  @echo "\033[35m----Building MLX----"
+		  @make -sC ${MLX_DIR}
+		  @echo "OK"
+
+${NAME}        : ${OBJS} ${LIBFT} ${MLX}
+		  @echo "\033[34m----Compiling----"
+		  @${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT}
+		  @echo "OK"
 
 clean        :
-		  @echo "\033[1;31m>>CLEANING LIBFT"
+		  @echo "\033[31m----Cleaning libft----"
 		  @make clean -sC ${LIB_DIR}
-		  @echo ">>OK!\n~ ~ ~ ~ ~"
-		  @echo "\033[1;33m>>CLEANING OBJECTS"
+		  @echo "OK"
+		  @echo "\033[31m----Cleaning MLX----"
+		  @make clean -sC ${MLX_DIR}
+		  @echo "OK"
+		  @echo "\033[31m----Cleaning objects----"
 		  @${RM} ${OBJS}
-		  @echo ">>OK!\n~ ~ ~ ~ ~"
+		  @echo "OK"
 
 fclean        : clean
-		  @echo "\033[1;32m>>CLEANING ALL"
+		  @echo "\033[33m----Cleaning all----"
 		  @${RM} ${NAME}
 		  @${RM} ${LIBFT}
-		  @echo ">>OK!\n~ ~ ~ ~ ~"
+		  @${RM} ${MLX}
+		  @echo "OK"
 
 re        : fclean all
 
