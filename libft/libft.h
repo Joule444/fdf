@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:48:59 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/05/16 14:51:51 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:55:11 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -67,5 +68,10 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+char	*get_next_line_gnl(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+size_t	ft_strcpy_gnl(char *dest, const char *src);
+size_t	ft_strlen_gnl(const char *str);
 
 #endif
