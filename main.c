@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/14 14:37:41 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:44:26 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,21 @@ int	check_file(char *file)
 		return (0);
 }
 
+void	mlx_window(void)
+{
+	
+}
+
 int	main(int argc, char **argv)
 {
 	char	*file;
+	int		fd;
 
 	file = argv[1];
 	if (argc != 2)
 		return (0);
 	if (!check_file(file))
 		return (0);
-	else
-		return (printf("%s", file), 0);
+	// fd = open(file, O_RDONLY, 777);
+	// printf("%s", get_next_line(fd));
 }
