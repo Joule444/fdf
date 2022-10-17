@@ -6,7 +6,7 @@
 #    By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/08 14:56:58 by tmejri            #+#    #+#              #
-#    Updated: 2022/05/13 16:37:46 by jthuysba         ###   ########.fr        #
+#    Updated: 2022/10/17 15:37:30 by jthuysba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmo
 ft_memset.c ft_split.c ft_strchr.c ft_strrchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c \
 ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strchr.c ft_strtrim.c\
  ft_substr.c ft_tolower.c ft_toupper.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c\
-ft_putnbr_fd.c \
+ft_putnbr_fd.c get_next_line.c get_next_line_utils.c\
 
 OBJS			= ${SRCS:.c=.o}
 

@@ -6,11 +6,11 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:10:54 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/14 17:56:01 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:35:38 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 size_t	ft_strlen_gnl(const char *str)
 {

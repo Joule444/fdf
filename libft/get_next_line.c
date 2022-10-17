@@ -6,11 +6,11 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:13:50 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/14 17:55:38 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:35:33 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 int	check_endline(char *buffer)
 {
