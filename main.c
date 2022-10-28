@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/17 18:48:39 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:29:28 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,34 @@ t_mlx	mlx_win_init(void)
 }
 
 //Dessine une ligne du fichier
-void	mlx_draw_row(t_mlx mlx, char *line, int y)
+void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 {
 	int		x;
+	int		z;
+	int		i;
 	char	**arr;
 	char	**parts;
 	char	*color;
 
-	x = 0;
+	x = 500;
+	i = 0;
 	arr = ft_split(line, ' ');
-	while (arr[x])
+	while (arr[i])
 	{
-		parts = ft_split(arr[x], ',');
-		if (parts[1])
-			color = parts[1];
+		parts = ft_split(arr[i], ',');
+		//OSEF POUR LINSTANT
+		if (ft_strchr(arr[i], ',') != NULL)
+		{
+			color = malloc(sizeof(char) * ft_strlen(parts[1]));
+			ft_strlcpy(color, parts[1], ft_strlen(parts[1]));
+		}
 		else
-			color = "0xFFFFFFF";
-		if (arr[x][0] == '0')
-			my_mlx_pixel_put(&mlx.img, x, y, (int) color);
-		else
-			my_mlx_pixel_put(&mlx.img, x, y, (int) color);
-		x++;
+			color = (char *) 0xffffff;
+		
+		z = ft_atoi(parts[0]);
+		my_mlx_pixel_put(&mlx.img, (x - y), ((x + y - z) / 2), color);
+		i++;
+		x += zoom;
 	}
 }
 
@@ -81,7 +88,9 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	**arr;
 	int		y;
+	int		zoom;
 
+	zoom = 10;
 	y = 0;
 	if (argc != 2)
 		return (0);
@@ -92,8 +101,8 @@ int	main(int argc, char **argv)
 	line = get_next_line(fd);
 	while (line)
 	{
-		mlx_draw_row(mlx, line, y);
-		y++;
+		mlx_draw_row(mlx, line, y, zoom);
+		y += zoom;
 		printf("%s", line);
 		line = get_next_line(fd);
 	}

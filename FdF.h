@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/17 16:16:12 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:23:11 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
 #include "./mlx/mlx.h"
 #include "./libft/libft.h"
 
