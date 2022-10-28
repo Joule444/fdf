@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/28 14:29:28 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:48:35 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,27 @@ t_mlx	mlx_win_init(void)
 	return (mlx);
 }
 
-//Dessine une ligne du fichier
+void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2)
+{
+	int	dx;
+	int	dy;
+	int	m;
+	int	x;
+	int	y;
+
+	dx = abs(x2 - x1);
+	dy = abs(y2 - y1);
+	m = dy / dx;
+	x = x1;
+	while (x < x2)
+	{
+		y = m * x + y1;
+		my_mlx_pixel_put(&mlx.img, x, y, 0xffffff);
+		x++;
+	}
+}
+
+//Lit et place une ligne de la map
 void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 {
 	int		x;
@@ -73,9 +93,9 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 		}
 		else
 			color = (char *) 0xffffff;
-		
 		z = ft_atoi(parts[0]);
 		my_mlx_pixel_put(&mlx.img, (x - y), ((x + y - z) / 2), color);
+		bresenham_line(mlx, (x - y), ((x + y - z) / 2), (x + zoom - y), ((x + zoom + y - z) / 2));
 		i++;
 		x += zoom;
 	}
