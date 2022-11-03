@@ -8,7 +8,7 @@ LIBFT        = ./libft/libft.a
 
 MLX        = ./mlx/libmlx.a
 
-SRCS        = main.c
+SRCS        = main.c bresenham.c
 
 OBJS        = ${SRCS:.c=.o}
 

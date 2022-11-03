@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/10/28 16:48:35 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:36:03 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,53 +49,30 @@ t_mlx	mlx_win_init(void)
 	return (mlx);
 }
 
-void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2)
-{
-	int	dx;
-	int	dy;
-	int	m;
-	int	x;
-	int	y;
-
-	dx = abs(x2 - x1);
-	dy = abs(y2 - y1);
-	m = dy / dx;
-	x = x1;
-	while (x < x2)
-	{
-		y = m * x + y1;
-		my_mlx_pixel_put(&mlx.img, x, y, 0xffffff);
-		x++;
-	}
-}
-
 //Lit et place une ligne de la map
 void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 {
-	int		x;
-	int		z;
-	int		i;
-	char	**arr;
-	char	**parts;
-	char	*color;
+	int			x;
+	int			z;
+	int			i;
+	char		**arr;
+	char		**parts;
+	unsigned int	color;
 
-	x = 500;
+	x = 100;
 	i = 0;
 	arr = ft_split(line, ' ');
 	while (arr[i])
 	{
 		parts = ft_split(arr[i], ',');
-		//OSEF POUR LINSTANT
 		if (ft_strchr(arr[i], ',') != NULL)
-		{
-			color = malloc(sizeof(char) * ft_strlen(parts[1]));
-			ft_strlcpy(color, parts[1], ft_strlen(parts[1]));
-		}
+			color = ft_atoi(parts[1]);
 		else
-			color = (char *) 0xffffff;
+			color = 0xffffff;
 		z = ft_atoi(parts[0]);
-		my_mlx_pixel_put(&mlx.img, (x - y), ((x + y - z) / 2), color);
-		bresenham_line(mlx, (x - y), ((x + y - z) / 2), (x + zoom - y), ((x + zoom + y - z) / 2));
+		// my_mlx_pixel_put(&mlx.img, (x - y), ((x + y - z) / 2), color);
+		my_mlx_pixel_put(&mlx.img, x, y, color);
+		// bresenham_line(mlx, (x - y), ((x + y - z) / 2), (x + zoom - y), ((x + zoom + y - z) / 2));
 		i++;
 		x += zoom;
 	}
@@ -111,7 +88,7 @@ int	main(int argc, char **argv)
 	int		zoom;
 
 	zoom = 10;
-	y = 0;
+	y = 100;
 	if (argc != 2)
 		return (0);
 	if (!check_file(argv[1]))
@@ -119,13 +96,14 @@ int	main(int argc, char **argv)
 	mlx = mlx_win_init();
 	fd = open(argv[1], O_RDONLY, 777);
 	line = get_next_line(fd);
-	while (line)
-	{
-		mlx_draw_row(mlx, line, y, zoom);
-		y += zoom;
-		printf("%s", line);
-		line = get_next_line(fd);
-	}
+	// while (line)
+	// {
+	// 	mlx_draw_row(mlx, line, y, zoom);
+	// 	y += zoom;
+	// 	printf("%s", line);
+	// 	line = get_next_line(fd);
+	// }
+	bresenham_line(mlx, 0, 500, 1000, 200);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	mlx_loop(mlx.mlx_ptr);
 }
