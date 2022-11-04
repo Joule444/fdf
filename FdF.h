@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/03 13:55:16 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:29:07 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ typedef struct	s_mlx {
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	bresenham_column(t_mlx mlx, int x1, int y1, int x2, int y2);
+int	iso_x(int x, int y);
+int	iso_y(int x, int y, int z);
 
 #endif

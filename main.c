@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/03 18:36:03 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:32:05 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	check_file(char *file)
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
+	
+	if (x < 0 || y < 0)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
@@ -49,6 +50,26 @@ t_mlx	mlx_win_init(void)
 	return (mlx);
 }
 
+int	line_points(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	iso_x(int x, int y)
+{
+	return (x - y);
+}
+
+int	iso_y(int x, int y, int z)
+{
+	return ((x + y - z) / 2);
+}
+
 //Lit et place une ligne de la map
 void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 {
@@ -59,7 +80,7 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 	char		**parts;
 	unsigned int	color;
 
-	x = 100;
+	x = 1000;
 	i = 0;
 	arr = ft_split(line, ' ');
 	while (arr[i])
@@ -70,9 +91,10 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 		else
 			color = 0xffffff;
 		z = ft_atoi(parts[0]);
-		// my_mlx_pixel_put(&mlx.img, (x - y), ((x + y - z) / 2), color);
-		my_mlx_pixel_put(&mlx.img, x, y, color);
-		// bresenham_line(mlx, (x - y), ((x + y - z) / 2), (x + zoom - y), ((x + zoom + y - z) / 2));
+		my_mlx_pixel_put(&mlx.img, iso_x(x, y), iso_y(x, y, z), color);
+		// if (i < line_points(arr) - 1)
+		bresenham_row(mlx, x - zoom, y, x, y);
+		bresenham_column(mlx, x, y - zoom, x, y);
 		i++;
 		x += zoom;
 	}
@@ -87,7 +109,7 @@ int	main(int argc, char **argv)
 	int		y;
 	int		zoom;
 
-	zoom = 10;
+	zoom = 40;
 	y = 100;
 	if (argc != 2)
 		return (0);
