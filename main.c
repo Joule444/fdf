@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/07 19:03:34 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:37:02 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,6 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 		z = ft_atoi(parts[0]);
 		// my_mlx_pixel_put(&mlx.img, iso_x(x, y), iso_y(x, y, z), color);
 		my_mlx_pixel_put(&mlx.img, x, y, color);
-		if (i < line_points(arr) - 1)
-			bresenham_line(mlx, x - zoom, y, x, y);
-			bresenham_line(mlx, x, y - zoom, x, y);
 		i++;
 		x += zoom;
 		free_arr(parts);
@@ -122,14 +119,14 @@ int	main(int argc, char **argv)
 	mlx = mlx_win_init();
 	fd = open(argv[1], O_RDONLY, 777);
 	line = get_next_line(fd);
-	while (line)
-	{
-		mlx_draw_row(mlx, line, y, zoom);
-		y += zoom;
-		printf("%s", line);
-		line = get_next_line(fd);
-	}
-	// bresenham_line(mlx, 0, 500, 1000, 200);
+	// while (line)
+	// {
+	// 	mlx_draw_row(mlx, line, y, zoom);
+	// 	y += zoom;
+	// 	printf("%s", line);
+	// 	line = get_next_line(fd);
+	// }
+	bresenham_line(mlx, 100, 100, 500, 100);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	mlx_loop(mlx.mlx_ptr);
 }
