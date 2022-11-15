@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 13:32:06 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:57:52 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,24 @@ typedef struct	s_mlx {
 	t_data	img;
 }				t_mlx;
 
+//Check Error
 int	check_file(char *file);
+
+//Initialisation matrices
+int	**matrice_init(char *file);
+unsigned int	**color_matrice_init(char *file);
 
 //MLX
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-//Algo
+//Bresenham
 void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	octant_1(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	octant_6(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2);
+
+//Isometrie
 int	iso_x(int x, int y);
 int	iso_y(int x, int y, int z);
 

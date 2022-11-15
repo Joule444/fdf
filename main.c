@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 15:25:08 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:58:25 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ t_mlx	mlx_win_init(void)
 			&img.endian);
 	mlx.img = img;
 	return (mlx);
-}
-
-int	line_points(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
 }
 
 int	iso_x(int x, int y)
@@ -100,10 +90,10 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 
 // 	zoom = 10;
 // 	y = 0;
-	// if (argc != 2)
-	// 	return (0);
-	// if (!check_file(argv[1]))
-	// 	return (0);
+// 	if (argc != 2)
+// 		return (0);
+// 	if (!check_file(argv[1]))
+// 		return (0);
 // 	mlx = mlx_win_init();
 // 	fd = open(argv[1], O_RDONLY, 777);
 // 	line = get_next_line(fd);
@@ -118,28 +108,19 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 // 	mlx_loop(mlx.mlx_ptr);
 // }
 
-//Compte le nombres de lignes du fichier
-// int 
-
-//Initialise et rempli la matrice avec les points de la map
-char **matrice_init(int fd)
-{
-	char **matrice;
-
-	matrice = malloc(sizeof(char *) * matrice_lines(fd) + 1);
-}
-
 int	main(int argc, char **argv)
 {
-	t_mlx	mlx;
-	int		fd;
-	char	**matrice;
-	//Verifie arguments valables
+	t_mlx			mlx;
+	int				fd;
+	int				**matrice;
+	unsigned int	**color_matrice;
+
+	//Verifie si arguments valables
 	if (argc != 2)
 		return (0);
 	if (!check_file(argv[1]))
 		return (0);
 	mlx = mlx_win_init();
-	fd = open(argv[1], O_RDONLY, 777);
-	matrice = matrice_init(fd);
+	matrice = matrice_init(argv[1]);
+	color_matrice = color_matrice_init(argv[1]);
 }
