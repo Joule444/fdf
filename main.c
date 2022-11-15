@@ -6,24 +6,12 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/14 18:37:02 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:25:08 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 #include <stdio.h>
-
-//Verifie l'extension du fichier
-int	check_file(char *file)
-{
-	int	i;
-
-	i = ft_strlen(file) - 4;
-	if (strncmp(file + i, ".fdf", 4) == 0)
-		return (1);
-	else
-		return (0);
-}
 
 //Place un pixel
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -81,7 +69,7 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 	char		**parts;
 	unsigned int	color;
 
-	x = 10;
+	x = 200;
 	i = 0;
 	arr = ft_split(line, ' ');
 	while (arr[i])
@@ -92,8 +80,8 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 		else
 			color = 0xffffff;
 		z = ft_atoi(parts[0]);
-		// my_mlx_pixel_put(&mlx.img, iso_x(x, y), iso_y(x, y, z), color);
-		my_mlx_pixel_put(&mlx.img, x, y, color);
+		my_mlx_pixel_put(&mlx.img, iso_x(x, y), iso_y(x, y, z), color);
+		// my_mlx_pixel_put(&mlx.img, x, y, color);
 		i++;
 		x += zoom;
 		free_arr(parts);
@@ -101,32 +89,57 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 	free_arr(arr);
 }
 
+// int	main(int argc, char **argv)
+// {
+// 	t_mlx	mlx;
+// 	char	*line;
+// 	int		fd;
+// 	char	**arr;
+// 	int		y;
+// 	int		zoom;
+
+// 	zoom = 10;
+// 	y = 0;
+	// if (argc != 2)
+	// 	return (0);
+	// if (!check_file(argv[1]))
+	// 	return (0);
+// 	mlx = mlx_win_init();
+// 	fd = open(argv[1], O_RDONLY, 777);
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		mlx_draw_row(mlx, line, y, zoom);
+// 		y += zoom;
+// 		printf("%s", line);
+// 		line = get_next_line(fd);
+// 	}
+// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
+// 	mlx_loop(mlx.mlx_ptr);
+// }
+
+//Compte le nombres de lignes du fichier
+// int 
+
+//Initialise et rempli la matrice avec les points de la map
+char **matrice_init(int fd)
+{
+	char **matrice;
+
+	matrice = malloc(sizeof(char *) * matrice_lines(fd) + 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
-	char	*line;
 	int		fd;
-	char	**arr;
-	int		y;
-	int		zoom;
-
-	zoom = 10;
-	y = 0;
+	char	**matrice;
+	//Verifie arguments valables
 	if (argc != 2)
 		return (0);
 	if (!check_file(argv[1]))
 		return (0);
 	mlx = mlx_win_init();
 	fd = open(argv[1], O_RDONLY, 777);
-	line = get_next_line(fd);
-	// while (line)
-	// {
-	// 	mlx_draw_row(mlx, line, y, zoom);
-	// 	y += zoom;
-	// 	printf("%s", line);
-	// 	line = get_next_line(fd);
-	// }
-	bresenham_line(mlx, 100, 100, 500, 100);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
-	mlx_loop(mlx.mlx_ptr);
+	matrice = matrice_init(fd);
 }

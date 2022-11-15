@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:53:25 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/14 18:12:42 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:15:19 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 	else if (x2 > x1 && y1 > y2)
 	{
-		if (x2 - x1 > y2 - y1)
+		if (x2 - x1 > y1 - y2)
 			octant_7(mlx, x1, y1, x2, y2);
 		else
 			octant_6(mlx, x1, y1, x2, y2);
