@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 18:57:52 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:58:24 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct	s_mlx {
 int	check_file(char *file);
 
 //Initialisation matrices
-int	**matrice_init(char *file);
-unsigned int	**color_matrice_init(char *file);
+char	**matrice_init(char *file);
+char	**color_matrice_init(char *file);
 
 //MLX
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -56,5 +56,6 @@ int	iso_y(int x, int y, int z);
 
 //Utils
 void	free_arr(char **arr);
+void	my_strcat(char *dest, char *src);
 
 #endif

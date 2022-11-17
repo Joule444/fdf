@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 18:58:25 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:39:23 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 // 	char	**arr;
 // 	int		y;
 // 	int		zoom;
-
 // 	zoom = 10;
 // 	y = 0;
 // 	if (argc != 2)
@@ -104,23 +103,46 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 // 		printf("%s", line);
 // 		line = get_next_line(fd);
 // 	}
-// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
-// 	mlx_loop(mlx.mlx_ptr);
+	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
+	// mlx_loop(mlx.mlx_ptr);
 // }
+
+void	mlx_draw_points(t_mlx mlx, int **matrice, unsigned int **color_matrice)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (matrice[y])
+	{
+		while (matrice[y][x])
+		{
+			my_mlx_pixel_put(&mlx.img, x, y, color_matrice[y][x]);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
-	t_mlx			mlx;
-	int				fd;
-	int				**matrice;
-	unsigned int	**color_matrice;
+	t_mlx	mlx;
+	int		fd;
+	char	**matrice;
+	char	**color_matrice;
 
 	//Verifie si arguments valables
 	if (argc != 2)
 		return (0);
 	if (!check_file(argv[1]))
 		return (0);
-	mlx = mlx_win_init();
+	// mlx = mlx_win_init();
 	matrice = matrice_init(argv[1]);
-	color_matrice = color_matrice_init(argv[1]);
+	// color_matrice = color_matrice_init(argv[1]);
+	// mlx_draw_points(mlx, matrice, color_matrice);
+	
+	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
+	// mlx_loop(mlx.mlx_ptr);
 }
