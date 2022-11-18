@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/17 15:39:23 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:01:30 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,21 +109,6 @@ void	mlx_draw_row(t_mlx mlx, char *line, int y, int zoom)
 
 void	mlx_draw_points(t_mlx mlx, int **matrice, unsigned int **color_matrice)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (matrice[y])
-	{
-		while (matrice[y][x])
-		{
-			my_mlx_pixel_put(&mlx.img, x, y, color_matrice[y][x]);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
 }
 
 int	main(int argc, char **argv)
@@ -132,7 +117,9 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	**matrice;
 	char	**color_matrice;
+	int i;
 
+	i = 0;
 	//Verifie si arguments valables
 	if (argc != 2)
 		return (0);
@@ -142,7 +129,7 @@ int	main(int argc, char **argv)
 	matrice = matrice_init(argv[1]);
 	// color_matrice = color_matrice_init(argv[1]);
 	// mlx_draw_points(mlx, matrice, color_matrice);
-	
+	free_arr(matrice);
 	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	// mlx_loop(mlx.mlx_ptr);
 }

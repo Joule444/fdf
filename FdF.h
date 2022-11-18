@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/17 16:58:24 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:36:16 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ int	iso_y(int x, int y, int z);
 
 //Utils
 void	free_arr(char **arr);
-void	my_strcat(char *dest, char *src);
 
 #endif

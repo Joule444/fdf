@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:55:57 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/17 18:26:17 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:58:21 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,83 +59,53 @@ int	matrice_line_len(char *line)
 	return (count - 1);
 }
 
+//Rempli une ligne de la matrice
+char	*fill_line(char *line)
+{
+	char	*matrice_line;
+	char	**arr;
+	char	**parts;
+	int		i;
+
+	line[ft_strlen(line) - 1] = '\0';
+	matrice_line = (char *)ft_calloc(matrice_line_len(line) + 1, sizeof(char));
+	if (!matrice_line)
+		return (NULL);
+	arr = ft_split(line, ' ');
+	i = 0;
+	while (arr[i])
+	{
+		parts = ft_split(arr[i], ',');
+		ft_strlcat(matrice_line, parts[0], ft_strlen(matrice_line) + ft_strlen(parts[0]) + 1);
+		ft_strlcat(matrice_line, ";", ft_strlen(matrice_line) + 2);
+		free_arr(parts);
+		i++;
+	}
+	free_arr(arr);
+	return (matrice_line);
+}
+
 //Initialise la matrice avec les points de la map
-char **matrice_init(char *file)
+char	**matrice_init(char *file)
 {
 	char	**matrice;
 	int		fd;
 	char	*line;
-	char	**arr;
 	int		i;
-	int		j;
-	char	**parts;
 
 	fd = open(file, O_RDONLY, 777);
-	matrice = malloc(sizeof(char *) * (matrice_lines(file) +  1));
+	matrice = malloc(sizeof(char *) * (matrice_lines(file) + 1));
 	if (!matrice)
-			return (NULL);
+		return (NULL);
 	line = get_next_line(fd);
 	i = 0;
-	j = 0;
 	while (line)
 	{
-		matrice[j] = malloc(sizeof(char) * (matrice_line_len(line) + 1));
-		matrice[j] = "\0";
-		if (!matrice[j])
-			return (NULL);
-		arr = ft_split(line, ' ');
-		while (arr[i])
-		{
-			parts = ft_split(arr[i], ',');
-			my_strcat(matrice[j], parts[0]);
-			printf("%s", matrice[j]);
-			free_arr(parts);
-			i++;
-		}
-		free_arr(arr);
-		free(line);
-		i = 0;
-		j++;
-		line = get_next_line(fd);
-	}
-	return (matrice);
-}
-
-//Initialise la matrice avec les couleurs de chaque point de la map
-char **color_matrice_init(char *file)
-{
-	unsigned int		**color_matrice;
-	int					fd;
-	char				*line;
-	char				**arr;
-	int					i;
-	int					j;
-	char				**parts;
-
-	fd = open(file, O_RDONLY, 777);
-	color_matrice = malloc(sizeof(int *) * matrice_lines(file));
-	line = get_next_line(fd);
-	i = 0;
-	j = 0;
-	while (line)
-	{
-		arr = ft_split(line, ' ');
-		color_matrice[i] = malloc(sizeof(int) * elem_count(arr));
-		while (arr[j])
-		{
-			parts = ft_split(arr[j], ',');
-			if (ft_strchr(arr[i], ',') != NULL)
-				color_matrice[i][j] = ft_atoi(parts[0]);
-			else
-				color_matrice[i][j] = 0xffffff;
-			free_arr(parts);
-			j++;
-		}
-		free_arr(arr);
-		free(line);
+		matrice[i] = fill_line(line);
 		i++;
-		j = 0;
+		free(line);
 		line = get_next_line(fd);
 	}
-	return (color_matrice);
+	close(fd);
+	return (free(line), matrice);
 }
