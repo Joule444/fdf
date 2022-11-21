@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/18 14:36:16 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:13:19 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct	s_mlx {
 	void	*mlx_win;
 	t_data	img;
 }				t_mlx;
+
+typedef struct	s_coord {
+	int	start_x;
+	int	start_y;
+	int	zoom;
+}				t_coord;
+
 
 //Check Error
 int	check_file(char *file);

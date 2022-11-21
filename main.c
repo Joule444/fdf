@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:54:21 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:51:35 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,17 @@ int	get_point(char **matrice, int x, int y)
 	return (ft_atoi(matrice[y] + i));
 }
 
-void	mlx_draw_points(t_mlx mlx, char **matrice)
+void	mlx_draw_points(t_mlx mlx, char **matrice, t_coord coord)
 {
 	int	x;
-	int	win_x;
 	int	y;
+	int	win_x;
 	int	win_y;
-	int	zoom;
 
 	x = 0;
-	win_x = 0;
 	y = 0;
-	win_y = 0;
-	zoom = 20;
+	win_x = coord.start_x;
+	win_y = coord.start_y;
 	while (matrice[y])
 	{
 		while (matrice[y][x])
@@ -83,48 +81,51 @@ void	mlx_draw_points(t_mlx mlx, char **matrice)
 			if (matrice[y][x] == ';')
 			{
 				my_mlx_pixel_put(&mlx.img, win_x, win_y, 0xffffff);
-				win_x += zoom;
+				win_x += coord.zoom;
 			}
 			x++;
 		}
 		x = 0;
-		win_x = x;
+		win_x = coord.start_x;
 		y++;
-		win_y += zoom;
+		win_y += coord.zoom;
 	}
 }
 
-void	mlx_draw_lines(t_mlx mlx, char **matrice)
+void	mlx_draw_lines(t_mlx mlx, char **matrice, t_coord coord)
 {
 	int	x;
-	int	win_x;
 	int	y;
+	int	win_x;
 	int	win_y;
-	int	zoom;
 
 	x = 0;
-	win_x = 0;
 	y = 0;
-	win_y = 0;
-	zoom = 20;
+	win_x = coord.start_x;
+	win_y = coord.start_y;
 	while (matrice[y])
 	{
 		while (matrice[y][x])
 		{
 			if (matrice[y][x] == ';')
-				bresenham_line(mlx, win_x - zoom, win_y, win_x, win_y);
+			{
+				bresenham_line(mlx, win_x, win_y, win_x + coord.zoom, win_y);
+				bresenham_line(mlx, win_x, win_y, win_x, win_y + coord.zoom);
+				win_x += coord.zoom;
+			}
 			x++;
 		}
 		x = 0;
-		win_x = x;
+		win_x = coord.start_x;
 		y++;
-		win_y += zoom;
+		win_y += coord.zoom;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
+	t_coord	coord;
 	int		fd;
 	char	**matrice;
 
@@ -134,9 +135,12 @@ int	main(int argc, char **argv)
 	if (!check_file(argv[1]))
 		return (0);
 	mlx = mlx_win_init();
+	coord.start_x = 20;
+	coord.start_y = 20;
+	coord.zoom = 40;
 	matrice = matrice_init(argv[1]);
-	mlx_draw_points(mlx, matrice);
-	mlx_draw_lines(mlx, matrice);
+	mlx_draw_points(mlx, matrice, coord);
+	mlx_draw_lines(mlx, matrice, coord);
 	free_arr(matrice);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	mlx_loop(mlx.mlx_ptr);

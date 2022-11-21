@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:55:57 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/18 14:58:21 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:46:00 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	matrice_line_len(char *line)
 		i++;
 	}
 	free_arr(arr);
-	return (count - 1);
+	return (count);
 }
 
 //Rempli une ligne de la matrice
@@ -81,6 +81,9 @@ char	*fill_line(char *line)
 		free_arr(parts);
 		i++;
 	}
+	matrice_line[ft_strlen(matrice_line) - 1] = '$';
+	matrice_line[ft_strlen(matrice_line)] = '\0';
+	printf("%s\n", matrice_line);
 	free_arr(arr);
 	return (matrice_line);
 }
