@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/21 13:51:35 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:58:32 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,15 @@ void	mlx_draw_lines(t_mlx mlx, char **matrice, t_coord coord)
 	{
 		while (matrice[y][x])
 		{
-			if (matrice[y][x] == ';')
+			if (matrice[y][x] == ';' && matrice[y][ft_strlen(matrice[y]) - 1] != '!')
 			{
 				bresenham_line(mlx, win_x, win_y, win_x + coord.zoom, win_y);
 				bresenham_line(mlx, win_x, win_y, win_x, win_y + coord.zoom);
 				win_x += coord.zoom;
+			}
+			else if (matrice[y][x] == '$' && matrice[y][ft_strlen(matrice[y]) - 1] != '!') //Dernier caractere de la ligne
+			{
+				bresenham_line(mlx, win_x, win_y, win_x, win_y + coord.zoom);
 			}
 			x++;
 		}
