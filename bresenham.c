@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:53:25 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 15:43:52 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:22:04 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ void	horizontal_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 
 void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
+	int tmpx;
+	int	tmpy;
+	
+	if (x1 > x2)
+	{
+		tmpx = x1;
+		tmpy = y1;
+		x1 = x2;
+		y1 = y2;
+		x2 = tmpx;
+		y2 = tmpy;
+	}
 	if (x1 == x2)
 		vertical_line(mlx, x1, y1, x2, y2);
 	else if (y1 == y2)

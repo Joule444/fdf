@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/21 13:13:19 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:58:15 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ typedef struct	s_mlx {
 	t_data	img;
 }				t_mlx;
 
-typedef struct	s_coord {
-	int	start_x;
-	int	start_y;
-	int	zoom;
-}				t_coord;
-
+typedef struct s_point
+{
+	int				x;
+	int				y;
+	int				z;
+	unsigned int	color;
+	int				iso_x;
+	int				iso_y;
+	struct s_point	*next;
+}	t_point;
 
 //Check Error
 int	check_file(char *file);
@@ -46,6 +50,8 @@ int	check_file(char *file);
 //Initialisation matrices
 char	**matrice_init(char *file);
 char	**color_matrice_init(char *file);
+
+t_point	*lst_init(char *file);
 
 //MLX
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

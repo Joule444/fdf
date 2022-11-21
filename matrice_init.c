@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:55:57 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/21 14:54:57 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:03:28 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*fill_line(char *line)
 	{
 		parts = ft_split(arr[i], ',');
 		ft_strlcat(matrice_line, parts[0], ft_strlen(matrice_line) + ft_strlen(parts[0]) + 1);
-		printf("%s\n", parts[0]);
 		ft_strlcat(matrice_line, ";", ft_strlen(matrice_line) + 2);
 		free_arr(parts);
 		i++;
@@ -105,13 +104,11 @@ char	**matrice_init(char *file)
 	while (line)
 	{
 		matrice[i] = fill_line(line);
-		printf("%s\n", matrice[i]);
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	matrice[i - 1][ft_strlen(matrice[i - 1]) - 1] = '!';
-	printf("%s\n", matrice[i - 1]);
 	close(fd);
 	return (free(line), matrice);
 }
