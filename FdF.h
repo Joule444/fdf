@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 14:19:36 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:00:24 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ typedef struct	s_data {
 }	t_data;
 
 typedef struct	s_mlx {
-	void	*mlx_ptr;
-	void	*mlx_win;
-	t_data	img;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	t_data			img;
+	struct s_point	**point;
+	unsigned int	active_color;
 }	t_mlx;
 
 typedef struct s_point
@@ -81,6 +83,10 @@ int		iso_y(int x, int y, int z);
 //Draw
 void	draw_points(t_mlx mlx, t_point *point, t_info info);
 void	draw_lines(t_mlx mlx, t_point *point, t_info info);
+
+//Z fonctions
+int	get_z(int x, int y, t_point *point);
+int	get_z_max(t_point *point);
 
 //Utils
 void	free_arr(char **arr);
