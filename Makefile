@@ -8,7 +8,7 @@ LIBFT        = ./libft/libft.a
 
 MLX        = ./mlx/libmlx.a
 
-SRCS        = main.c mlx.c bresenham.c bresenham_octants.c utils.c check_file.c lst_fonct.c lst_init.c iso.c
+SRCS        = main.c mlx.c bresenham.c bresenham_octants.c utils.c check_file.c lst_fonct.c lst_init.c iso.c draw_figure.c
 
 OBJS        = ${SRCS:.c=.o}
 

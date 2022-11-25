@@ -6,12 +6,13 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:53:25 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/21 16:22:04 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:17:27 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
+//Trace une ligne verticale
 void	vertical_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	while (y1 < y2)
@@ -21,6 +22,7 @@ void	vertical_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 }
 
+//Trace une ligne horizontale
 void	horizontal_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	while (x1 < x2)
@@ -30,6 +32,7 @@ void	horizontal_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 }
 
+//Trace une ligne du point 1 au point 2
 void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	int tmpx;

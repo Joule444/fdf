@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/22 13:58:30 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:19:36 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}	t_data;
 
 typedef struct	s_mlx {
 	void	*mlx_ptr;
 	void	*mlx_win;
 	t_data	img;
-}				t_mlx;
+}	t_mlx;
 
 typedef struct s_point
 {
@@ -39,10 +39,17 @@ typedef struct s_point
 	int				y;
 	int				z;
 	unsigned int	color;
-	int				iso_x;
-	int				iso_y;
+	int				win_x;
+	int				win_y;
 	struct s_point	*next;
 }	t_point;
+
+typedef struct s_info
+{
+	int	start_x;
+	int	start_y;
+	int	zoom;
+}	t_info;
 
 //Check Error
 int		check_file(char *file);
@@ -51,7 +58,7 @@ int		check_file(char *file);
 t_mlx	mlx_win_init(void);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-//Initialisation liste
+//Initialisation de la liste
 t_point	**lst_init(char *file);
 
 //Fonctions de liste
@@ -70,6 +77,10 @@ void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2);
 //Isometrie
 int		iso_x(int x, int y);
 int		iso_y(int x, int y, int z);
+
+//Draw
+void	draw_points(t_mlx mlx, t_point *point, t_info info);
+void	draw_lines(t_mlx mlx, t_point *point, t_info info);
 
 //Utils
 void	free_arr(char **arr);

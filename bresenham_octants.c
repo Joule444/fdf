@@ -6,12 +6,13 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:42:06 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 15:42:31 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:17:22 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
+//Ligne vers la droite et le bas + horizontale
 void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	int	a;
@@ -38,6 +39,7 @@ void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 }
 
+//Ligne vers la droite et le bas + verticale
 void	octant_1(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	int	a;
@@ -64,6 +66,7 @@ void	octant_1(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 }
 
+//Ligne vers la droite et le haut + horizontale
 void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	int	a;
@@ -90,6 +93,7 @@ void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2)
 	}
 }
 
+//Ligne vers la droite et le haut + verticale
 void	octant_6(t_mlx mlx, int x1, int y1, int x2, int y2)
 {
 	int	a;

@@ -6,13 +6,13 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:31:28 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/15 15:35:16 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:11:36 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-//Verifie l'extension du fichier
+//Verifie type du fichier
 int	check_file(char *file)
 {
 	int	i;
