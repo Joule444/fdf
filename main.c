@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 17:10:56 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:15:48 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,43 @@ t_info	scale(t_mlx mlx)
 		info.zoom = 2;
 	return (info);
 }
- 
+
+int	mlx_escape(int keycode, t_mlx mlx)
+{
+	if (keycode == 65307)
+	{
+		mlx_destroy_image(mlx.mlx_ptr, mlx.mlx_win);
+		mlx_destroy_window(mlx.mlx_ptr, mlx.mlx_win);
+		mlx_destroy_display(mlx.mlx_ptr);
+		exit(EXIT_SUCCESS);
+	}
+	return (printf("Bye !"), 0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 	t_info	info;
+	
 	//Verifie si arguments valables
 	if (argc != 2)
 		return (0);
 	if (!check_file(argv[1]))
 		return (0);
+		
 	mlx = mlx_win_init();
 	mlx.point = lst_init(argv[1]);
+	
 	info = scale(mlx);
 	mlx.color = 0xf4f867;
+	
 	draw_points(mlx, *mlx.point, info);
 	draw_lines(mlx, *mlx.point, info);
+	
 	my_lstclear(mlx.point);
 	free(mlx.point);
+	
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
+	mlx_hook(mlx.mlx_win, 2, 1L<<0, mlx_escape, &mlx.img);
 	mlx_loop(mlx.mlx_ptr);
 }
