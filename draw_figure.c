@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 14:18:55 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:27:43 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	draw_points(t_mlx mlx, t_point *point, t_info info)
 	while (point)
 	{
 		point->win_x = iso_x((point->x * info.zoom) + info.start_x, (point->y * info.zoom) + info.start_y);
-		point->win_y = iso_y((point->x * info.zoom) + info.start_x, (point->y * info.zoom) + info.start_y, point->z);
-		my_mlx_pixel_put(&mlx.img, point->win_x, point->win_y, point->color);
+		point->win_y = iso_y((point->x * info.zoom) + info.start_x, (point->y * info.zoom) + info.start_y, point->z, info);
+		my_mlx_pixel_put(&mlx.img, point->win_x, point->win_y, mlx.color);
 		point = point->next;
 	}
 }

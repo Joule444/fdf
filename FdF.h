@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 16:00:24 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:28:09 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_mlx {
 	void			*mlx_win;
 	t_data			img;
 	struct s_point	**point;
-	unsigned int	active_color;
+	unsigned int	color;
 }	t_mlx;
 
 typedef struct s_point
@@ -68,6 +68,7 @@ t_point	*my_lstnew(int x, int y, int z, unsigned int color);
 t_point	*my_lstlast(t_point *lst);
 void	my_lstadd_back(t_point **lst, t_point *new);
 void	my_lstclear(t_point **lst);
+int		my_lstsize(t_point *point);
 
 //Bresenham
 void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2);
@@ -78,7 +79,7 @@ void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2);
 
 //Isometrie
 int		iso_x(int x, int y);
-int		iso_y(int x, int y, int z);
+int	iso_y(int x, int y, int z, t_info info);
 
 //Draw
 void	draw_points(t_mlx mlx, t_point *point, t_info info);

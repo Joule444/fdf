@@ -6,11 +6,25 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:51:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 14:06:51 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:26:51 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+//Retourne le nombres de maillons de la liste
+int	my_lstsize(t_point *point)
+{
+	int	i;
+
+	i = 0;
+	while (point)
+	{
+		i++;
+		point = point->next;
+	}
+	return (i);
+}
 
 //Initialise un nouveau point/maillon
 t_point	*my_lstnew(int x, int y, int z, unsigned int color)
@@ -20,7 +34,7 @@ t_point	*my_lstnew(int x, int y, int z, unsigned int color)
 	a = malloc(sizeof(t_point));
 	a->x = x;
 	a->y = y;
-	a->z = 10 * z;
+	a->z = z;
 	a->color = color;
 	a->next = NULL;
 	return (a);

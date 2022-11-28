@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:58:49 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 14:10:22 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:27:57 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	iso_x(int x, int y)
 }
 
 //Converti y en isometrique
-int	iso_y(int x, int y, int z)
+int	iso_y(int x, int y, int z, t_info info)
 {
-	return ((x + y - z) / 2);
+	return ((x + y - (z * info.zoom)) / 2);
 }

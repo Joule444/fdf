@@ -6,12 +6,44 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 15:59:29 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:10:56 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 #include <stdio.h>
+ 
+t_info	scale(t_mlx mlx)
+{
+	t_info	info;
+	
+	info.start_x = 700;
+	info.start_y = -100;
+	printf("size %d\n", my_lstsize(*mlx.point));
+	if (my_lstsize(*mlx.point) < 100)
+		info.zoom = 60;
+	if (my_lstsize(*mlx.point) >= 100 && my_lstsize(*mlx.point) <= 200)
+		info.zoom = 37;
+	if (my_lstsize(*mlx.point) > 200 && my_lstsize(*mlx.point) <= 300)
+		info.zoom = 35;
+	if (my_lstsize(*mlx.point) > 300 && my_lstsize(*mlx.point) <= 400)
+		info.zoom = 30;
+	if (my_lstsize(*mlx.point) > 400 && my_lstsize(*mlx.point) <= 500)
+		info.zoom = 20;
+	if (my_lstsize(*mlx.point) > 500 && my_lstsize(*mlx.point) <= 2000)
+		info.zoom = 19;
+	if (my_lstsize(*mlx.point) > 2000 && my_lstsize(*mlx.point) <= 3000)
+		info.zoom = 13;
+	if (my_lstsize(*mlx.point) > 3000 && my_lstsize(*mlx.point) <= 10000)
+		info.zoom = 9;
+	if (my_lstsize(*mlx.point) > 10000 && my_lstsize(*mlx.point) <= 50000)
+		info.zoom = 4;
+	if (my_lstsize(*mlx.point) > 50000 && my_lstsize(*mlx.point) <= 100000)
+		info.zoom = 3;
+	if (my_lstsize(*mlx.point) > 100000)
+		info.zoom = 2;
+	return (info);
+}
  
 int	main(int argc, char **argv)
 {
@@ -22,13 +54,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!check_file(argv[1]))
 		return (0);
-		
 	mlx = mlx_win_init();
-	
-	mlx.point = lst_init(argv[1]);	
-	info.start_x = 500;
-	info.start_y = 0;
-	info.zoom = 40;
+	mlx.point = lst_init(argv[1]);
+	info = scale(mlx);
+	mlx.color = 0xf4f867;
 	draw_points(mlx, *mlx.point, info);
 	draw_lines(mlx, *mlx.point, info);
 	my_lstclear(mlx.point);

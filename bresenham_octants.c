@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:42:06 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 16:51:14 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:34:25 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2)
 	error = -dx;
 	while (x1 < x2)
 	{
-		my_mlx_pixel_put(&mlx.img, x1, y, mlx.active_color);
+		my_mlx_pixel_put(&mlx.img, x1, y, mlx.color);
 		error += a;
 		if (error >= 0.0)
 		{
@@ -55,7 +55,7 @@ void	octant_1(t_mlx mlx, int x1, int y1, int x2, int y2)
 	error = -dy;
 	while (y1 < y2)
 	{
-		my_mlx_pixel_put(&mlx.img, x, y1, mlx.active_color);
+		my_mlx_pixel_put(&mlx.img, x, y1, mlx.color);
 		error += a;
 		if (error >= 0)
 		{
@@ -82,7 +82,7 @@ void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2)
 	error = -dx;
 	while (x1 != x2)
 	{
-		my_mlx_pixel_put(&mlx.img, x1, y, mlx.active_color);
+		my_mlx_pixel_put(&mlx.img, x1, y, mlx.color);
 		error += a;
 		if (error >= 0)
 		{
@@ -109,7 +109,7 @@ void	octant_6(t_mlx mlx, int x1, int y1, int x2, int y2)
 	error = -dy;
 	while (y1 != y2)
 	{
-		my_mlx_pixel_put(&mlx.img, x, y1, mlx.active_color);
+		my_mlx_pixel_put(&mlx.img, x, y1, mlx.color);
 		error += a;
 		if (error >= 0)
 		{
