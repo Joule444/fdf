@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 19:15:48 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:04:45 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_info	scale(t_mlx mlx)
 	
 	info.start_x = 700;
 	info.start_y = -100;
-	printf("size %d\n", my_lstsize(*mlx.point));
 	if (my_lstsize(*mlx.point) < 100)
 		info.zoom = 60;
 	if (my_lstsize(*mlx.point) >= 100 && my_lstsize(*mlx.point) <= 200)

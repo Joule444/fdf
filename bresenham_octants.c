@@ -6,14 +6,14 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:42:06 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 14:34:25 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:26:07 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
 //Ligne vers la droite et le bas + horizontale
-void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2)
+void	octant_0(t_mlx mlx, t_point *p1, t_point *p2)
 {
 	int	a;
 	int	dx;
@@ -30,7 +30,7 @@ void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2)
 	{
 		my_mlx_pixel_put(&mlx.img, x1, y, mlx.color);
 		error += a;
-		if (error >= 0.0)
+		if (error >= 0)
 		{
 			y++;
 			error -= 2 * dx;

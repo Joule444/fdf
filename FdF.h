@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 16:28:09 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:22:21 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	my_lstclear(t_point **lst);
 int		my_lstsize(t_point *point);
 
 //Bresenham
-void	bresenham_line(t_mlx mlx, int x1, int y1, int x2, int y2);
-void	octant_0(t_mlx mlx, int x1, int y1, int x2, int y2);
-void	octant_1(t_mlx mlx, int x1, int y1, int x2, int y2);
-void	octant_6(t_mlx mlx, int x1, int y1, int x2, int y2);
-void	octant_7(t_mlx mlx, int x1, int y1, int x2, int y2);
+void	bresenham_line(t_mlx mlx, t_point *p1, t_point *p2);
+void	octant_0(t_mlx mlx, t_point *p1, t_point *p2);
+void	octant_1(t_mlx mlx, t_point *p1, t_point *p2);
+void	octant_6(t_mlx mlx, t_point *p1, t_point *p2);
+void	octant_7(t_mlx mlx, t_point *p1, t_point *p2);
 
 //Isometrie
 int		iso_x(int x, int y);

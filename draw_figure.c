@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 16:27:43 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:10:38 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,17 @@ void	draw_lines(t_mlx mlx, t_point *point, t_info info)
 	while (point->next)
 	{
 		if (point->next->y == point->y)
-			bresenham_line(mlx, point->win_x, point->win_y, point->next->win_x, point->next->win_y);
+		{
+			if (point->win_x <= point->next->win_x)
+				bresenham_line(mlx, point, point->next);
+			else
+				bresenham_line(mlx, point->next, point);
+		}
 		elem = get_next_col(point);
-		bresenham_line(mlx, point->win_x, point->win_y, elem->win_x, elem->win_y);
+		if (point->win_x <= elem->win_x)
+				bresenham_line(mlx, point, elem);
+			else
+				bresenham_line(mlx, elem, point);
 		point = point->next;
 	}
 }
