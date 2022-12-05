@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:53:25 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/02 17:18:26 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:09:21 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 //Trace une ligne verticale
 void	vertical_line(t_mlx mlx, t_point *p1, t_point *p2)
 {
-	while (p1->win_y < p2->win_y)
+	int	y;
+
+	y = p1->win_y;
+	while (y < p2->win_y)
 	{
-		my_mlx_pixel_put(&mlx.img, p1->win_x, p1->win_y, mlx.color);
-		p1->win_y++;
+		my_mlx_pixel_put(&mlx.img, p1->win_x, y, mlx.color);
+		y++;
 	}
 }
 
 //Trace une ligne horizontale
 void	horizontal_line(t_mlx mlx, t_point *p1, t_point *p2)
 {
-	while (p1->win_x < p2->win_x)
+	int	x;
+
+	x = p1->win_x;
+	while (x < p2->win_x)
 	{
-		my_mlx_pixel_put(&mlx.img, p1->win_x, p1->win_y, mlx.color);
-		p1->win_x++;
+		my_mlx_pixel_put(&mlx.img, x, p1->win_y, mlx.color);
+		x++;
 	}
 }
 
@@ -60,6 +66,6 @@ void	bresenham_line(t_mlx mlx, t_point *p1, t_point *p2)
 		if (x2 - x1 > y1 - y2)
 			octant_7(mlx, p1, p2);
 		else
-			octant_6(mlx,p1, p2);
+			octant_6(mlx, p1, p2);
 	}
 }

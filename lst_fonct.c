@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:51:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/28 16:26:51 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:27:00 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	my_lstsize(t_point *point)
 }
 
 //Initialise un nouveau point/maillon
-t_point	*my_lstnew(int x, int y, int z, unsigned int color)
+t_point	*my_lstnew(int x, int y, int z)
 {
 	t_point	*a;
 
@@ -35,7 +35,6 @@ t_point	*my_lstnew(int x, int y, int z, unsigned int color)
 	a->x = x;
 	a->y = y;
 	a->z = z;
-	a->color = color;
 	a->next = NULL;
 	return (a);
 }

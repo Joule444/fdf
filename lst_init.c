@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:05:38 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/22 16:21:34 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:28:15 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,13 @@ void	init_line(t_point **list, char *line, int y)
 	char	**parts;
 	int		i;
 	int		x;
-	unsigned int	color;
 
 	arr = ft_split(line, ' ');
 	x = 0;
 	while (arr[x])
 	{
 		parts = ft_split(arr[x], ',');
-		if (ft_strchr(arr[x], ',') != NULL)
-			color = ft_atoi(parts[1]);
-		else
-			color = 0xffffff;
-		elem = my_lstnew(x, y, ft_atoi(parts[0]), color);
+		elem = my_lstnew(x, y, ft_atoi(parts[0]));
 		my_lstadd_back(list, elem);
 		x++;
 		free_arr(parts);
@@ -71,26 +66,6 @@ int	file_elem_count(char *file)
 	return (close(fd), free(line), count);
 }
 
-//DELETE
-// void    print_list(t_point **list)
-// {
-//     t_point  *tmp;
-//
-//     tmp = *list;
-//     while (*list)
-//     {
-//         printf("[x] -> %d\n", (*list)->x);
-// 		printf("[y] -> %d\n", (*list)->y);
-// 		printf("[z] -> %d\n", (*list)->z);
-// 		printf("[color] -> %d\n\n", (*list)->color);
-//         (*list) = (*list)->next;
-//     }
-//     printf("\n////////////// FIN //////////////////\n");
-//     *list = tmp;
-//
-// }
-//DELETE
-
 //Initialise liste des points de la map
 t_point	**lst_init(char *file)
 {
@@ -98,7 +73,7 @@ t_point	**lst_init(char *file)
 	char	*line;
 	int		fd;
 	int		y;
-	
+
 	list = malloc(sizeof(t_point) * file_elem_count(file));
 	if (!list)
 		return (NULL);
@@ -113,6 +88,5 @@ t_point	**lst_init(char *file)
 		line = get_next_line(fd);
 		y++;
 	}
-	// print_list(list);
 	return (free(line), list);
 }

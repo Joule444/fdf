@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:39:01 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 16:53:36 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:29:25 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_z(int x, int y, t_point *point)
 int	get_z_max(t_point *point)
 {
 	int	max;
-	
+
 	max = point->z;
 	while (point)
 	{

@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/02 17:22:21 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:48:19 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
+typedef struct s_info
+{
+	int	start_x;
+	int	start_y;
+	int	zoom;
+}	t_info;
+
 typedef struct	s_mlx {
 	void			*mlx_ptr;
 	void			*mlx_win;
 	t_data			img;
 	struct s_point	**point;
 	unsigned int	color;
+	t_info	info;
 }	t_mlx;
 
 typedef struct s_point
@@ -46,13 +54,6 @@ typedef struct s_point
 	struct s_point	*next;
 }	t_point;
 
-typedef struct s_info
-{
-	int	start_x;
-	int	start_y;
-	int	zoom;
-}	t_info;
-
 //Check Error
 int		check_file(char *file);
 
@@ -64,7 +65,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_point	**lst_init(char *file);
 
 //Fonctions de liste
-t_point	*my_lstnew(int x, int y, int z, unsigned int color);
+t_point	*my_lstnew(int x, int y, int z);
 t_point	*my_lstlast(t_point *lst);
 void	my_lstadd_back(t_point **lst, t_point *new);
 void	my_lstclear(t_point **lst);
@@ -91,5 +92,8 @@ int	get_z_max(t_point *point);
 
 //Utils
 void	free_arr(char **arr);
+
+//Moves
+void	mlx_move_keys(int keycode, t_mlx mlx);
 
 #endif

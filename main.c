@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/02 17:04:45 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:58:42 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,26 @@ t_info	scale(t_mlx mlx)
 	return (info);
 }
 
-int	mlx_escape(int keycode, t_mlx mlx)
+int	mlx_keypress(int keycode, t_mlx mlx)
 {
-	if (keycode == 65307)
+	printf("%d\n", mlx.info.start_x);
+	printf("%d\n", mlx.info.start_y);
+	printf("%d\n", mlx.info.zoom);
+	printf("%d\n", keycode);
+	if (keycode == 65307) //Escape
 	{
-		mlx_destroy_image(mlx.mlx_ptr, mlx.mlx_win);
+		mlx_destroy_image(mlx.mlx_ptr, mlx.img.img);
 		mlx_destroy_window(mlx.mlx_ptr, mlx.mlx_win);
 		mlx_destroy_display(mlx.mlx_ptr);
 		exit(EXIT_SUCCESS);
 	}
-	return (printf("Bye !"), 0);
+	else if (keycode == 119 || keycode == 97
+		|| keycode == 115 || keycode == 100)
+	{
+		mlx_move_keys(keycode, mlx);
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -71,15 +81,12 @@ int	main(int argc, char **argv)
 	mlx.point = lst_init(argv[1]);
 	
 	info = scale(mlx);
-	mlx.color = 0xf4f867;
+	mlx.color = 0xD2B4DE;
 	
 	draw_points(mlx, *mlx.point, info);
 	draw_lines(mlx, *mlx.point, info);
 	
-	my_lstclear(mlx.point);
-	free(mlx.point);
-	
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
-	mlx_hook(mlx.mlx_win, 2, 1L<<0, mlx_escape, &mlx.img);
+	// mlx_key_hook(mlx.mlx_win, mlx_keypress, &mlx.img);
 	mlx_loop(mlx.mlx_ptr);
 }
