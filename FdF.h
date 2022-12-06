@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 17:08:41 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:25:20 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	octant_6(t_mlx mlx, t_point *p1, t_point *p2);
 void	octant_7(t_mlx mlx, t_point *p1, t_point *p2);
 
 //Isometrie
-int		iso_x(int x, int y);
+int	iso_x(int x, int y);
 int	iso_y(int x, int y, int z, t_info info);
 
 //Draw

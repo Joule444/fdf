@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 17:19:13 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:55:34 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,18 @@ t_info	scale(t_mlx mlx)
 	return (info);
 }
 
-int	mlx_keypress(int keycode, t_mlx mlx)
+int	mlx_keypress(int keycode, t_mlx *mlx)
 {
+	printf("keycode %d\n", keycode);
 	if (keycode == 65307) //Escape
 	{
-		mlx_destroy_image(mlx.mlx_ptr, mlx.img.img);
-		mlx_destroy_window(mlx.mlx_ptr, mlx.mlx_win);
-		mlx_destroy_display(mlx.mlx_ptr);
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+		mlx_destroy_display(mlx->mlx_ptr);
 		exit(EXIT_SUCCESS);
 	}
-	else if (keycode == 119 || keycode == 97
-		|| keycode == 115 || keycode == 100)
-	{
-		mlx_move_keys(keycode, mlx);
-	}
+	else
+		mlx_move_keys(keycode, *mlx);
 	return (0);
 }
 
@@ -98,7 +96,6 @@ int	main(int argc, char **argv)
 	draw_points(mlx, *mlx.point, mlx.info);
 	draw_lines(mlx, *mlx.point, mlx.info);
 
-	print_list(mlx.point);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	mlx_key_hook(mlx.mlx_win, mlx_keypress, &mlx);
 	mlx_loop(mlx.mlx_ptr);
