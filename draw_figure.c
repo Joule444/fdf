@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/05 17:56:58 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:57:17 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_points(t_mlx mlx, t_point *point, t_info info)
 	{
 		zoom_x = (point->x * info.zoom) + info.start_x;
 		zoom_y = (point->y * info.zoom) + info.start_y;
-		if (!point->win_x && !point->win_y)
+		if (mlx.first_draw == 1)
 		{	
 			point->win_x = iso_x(zoom_x, zoom_y);
 			point->win_y = iso_y(zoom_x, zoom_y, point->z, info);
@@ -30,6 +30,7 @@ void	draw_points(t_mlx mlx, t_point *point, t_info info)
 		my_mlx_pixel_put(&mlx.img, point->win_x, point->win_y, mlx.color);
 		point = point->next;
 	}
+	mlx.first_draw = 0;
 }
 
 //Retourne le prochain maillon de meme x que point

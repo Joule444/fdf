@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/05 17:48:19 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:08:41 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_mlx {
 	struct s_point	**point;
 	unsigned int	color;
 	t_info	info;
+	int		first_draw;
 }	t_mlx;
 
 typedef struct s_point
@@ -95,5 +96,10 @@ void	free_arr(char **arr);
 
 //Moves
 void	mlx_move_keys(int keycode, t_mlx mlx);
+
+//DELETE
+//
+void    print_list(t_point **list);
+//
 
 #endif
