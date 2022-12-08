@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 17:25:02 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:11:33 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	set_points(t_mlx mlx, t_point *point)
 
 	while (point)
 	{
-		zoom_x = (point->x * mlx.info.zoom) + mlx.info.start_x;
-		zoom_y = (point->y * mlx.info.zoom) + mlx.info.start_y;
+		zoom_x = (point->x * mlx.scale.zoom) + mlx.scale.start_x;
+		zoom_y = (point->y * mlx.scale.zoom) + mlx.scale.start_y;
 		point->win_x = iso_x(zoom_x, zoom_y);
-		point->win_y = iso_y(zoom_x, zoom_y, point->z, mlx.info);
+		point->win_y = iso_y(zoom_x, zoom_y, point->z, mlx.scale);
 		point = point->next;
 	}
 }

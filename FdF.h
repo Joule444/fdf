@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 17:26:14 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:39:01 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,12 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
-typedef struct s_info
+typedef struct s_scale
 {
 	int	start_x;
 	int	start_y;
 	int	zoom;
-}	t_info;
-
-typedef struct	s_mlx {
-	void			*mlx_ptr;
-	void			*mlx_win;
-	t_data			img;
-	struct s_point	**point;
-	unsigned int	color;
-	t_info	info;
-	int		first_draw;
-}	t_mlx;
+}	t_scale;
 
 typedef struct s_point
 {
@@ -54,6 +44,15 @@ typedef struct s_point
 	int				win_y;
 	struct s_point	*next;
 }	t_point;
+
+typedef struct	s_mlx {
+	void			*mlx_ptr;
+	void			*mlx_win;
+	t_data			img;
+	struct s_point	**point;
+	t_scale			scale;
+	unsigned int	color;
+}	t_mlx;
 
 //Check Error
 int		check_file(char *file);
@@ -80,27 +79,29 @@ void	octant_6(t_mlx mlx, t_point *p1, t_point *p2);
 void	octant_7(t_mlx mlx, t_point *p1, t_point *p2);
 
 //Isometrie
-int	iso_x(int x, int y);
-int	iso_y(int x, int y, int z, t_info info);
+int		iso_x(int x, int y);
+int		iso_y(int x, int y, int z, t_scale scale);
 
 //Draw
 void	set_points(t_mlx mlx, t_point *point);
 void	draw_lines(t_mlx mlx, t_point *point);
 void	draw(t_mlx mlx);
 
-//Z fonctions
-int	get_z(int x, int y, t_point *point);
-int	get_z_max(t_point *point);
+//Moves
+void	mlx_move_keys(int keycode, t_mlx *mlx);
+void	z_up(t_mlx *mlx);
+void	z_down(t_mlx *mlx);
+void	zoom_in(t_mlx *mlx);
+void	zoom_out(t_mlx *mlx);
+void	change_color(t_mlx *mlx);
+
+//Translation
+void	move_up(t_mlx *mlx);
+void	move_left(t_mlx *mlx);
+void	move_down(t_mlx *mlx);
+void	move_right(t_mlx *mlx);
 
 //Utils
 void	free_arr(char **arr);
-
-//Moves
-void	mlx_move_keys(int keycode, t_mlx *mlx);
-
-//DELETE
-//
-void    print_list(t_point **list);
-//
 
 #endif
