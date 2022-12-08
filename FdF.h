@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 18:25:20 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:26:14 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int	iso_x(int x, int y);
 int	iso_y(int x, int y, int z, t_info info);
 
 //Draw
-void	draw_points(t_mlx mlx, t_point *point, t_info info);
-void	draw_lines(t_mlx mlx, t_point *point, t_info info);
+void	set_points(t_mlx mlx, t_point *point);
+void	draw_lines(t_mlx mlx, t_point *point);
+void	draw(t_mlx mlx);
 
 //Z fonctions
 int	get_z(int x, int y, t_point *point);
@@ -95,7 +96,7 @@ int	get_z_max(t_point *point);
 void	free_arr(char **arr);
 
 //Moves
-void	mlx_move_keys(int keycode, t_mlx mlx);
+void	mlx_move_keys(int keycode, t_mlx *mlx);
 
 //DELETE
 //

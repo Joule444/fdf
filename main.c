@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 18:55:34 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:25:16 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_info	scale(t_mlx mlx)
 
 int	mlx_keypress(int keycode, t_mlx *mlx)
 {
-	printf("keycode %d\n", keycode);
 	if (keycode == 65307) //Escape
 	{
 		mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
@@ -55,7 +54,7 @@ int	mlx_keypress(int keycode, t_mlx *mlx)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		mlx_move_keys(keycode, *mlx);
+		mlx_move_keys(keycode, mlx);
 	return (0);
 }
 
@@ -93,8 +92,7 @@ int	main(int argc, char **argv)
 	mlx.info = scale(mlx);
 	mlx.color = 0xD2B4DE;
 
-	draw_points(mlx, *mlx.point, mlx.info);
-	draw_lines(mlx, *mlx.point, mlx.info);
+	draw(mlx);
 
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img.img, 0, 0);
 	mlx_key_hook(mlx.mlx_win, mlx_keypress, &mlx);

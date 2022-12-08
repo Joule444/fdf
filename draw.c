@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_figure.c                                      :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 14:57:17 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:25:02 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-//Place les points de la figure
-void	draw_points(t_mlx mlx, t_point *point, t_info info)
+//Obtient les coordonees reelles des points
+void	set_points(t_mlx mlx, t_point *point)
 {
 	int	zoom_x;
 	int	zoom_y;
 
 	while (point)
 	{
-		zoom_x = (point->x * info.zoom) + info.start_x;
-		zoom_y = (point->y * info.zoom) + info.start_y;
-		if (mlx.first_draw == 1)
-		{	
-			point->win_x = iso_x(zoom_x, zoom_y);
-			point->win_y = iso_y(zoom_x, zoom_y, point->z, info);
-		}
-		my_mlx_pixel_put(&mlx.img, point->win_x, point->win_y, mlx.color);
+		zoom_x = (point->x * mlx.info.zoom) + mlx.info.start_x;
+		zoom_y = (point->y * mlx.info.zoom) + mlx.info.start_y;
+		point->win_x = iso_x(zoom_x, zoom_y);
+		point->win_y = iso_y(zoom_x, zoom_y, point->z, mlx.info);
 		point = point->next;
 	}
-	mlx.first_draw = 0;
 }
 
 //Retourne le prochain maillon de meme x que point
@@ -51,7 +46,7 @@ t_point	*get_next_col(t_point *point)
 }
 
 //Trace les lignes entres les points de la figure
-void	draw_lines(t_mlx mlx, t_point *point, t_info info)
+void	draw_lines(t_mlx mlx, t_point *point)
 {
 	t_point	*elem;
 
@@ -71,4 +66,11 @@ void	draw_lines(t_mlx mlx, t_point *point, t_info info)
 			bresenham_line(mlx, elem, point);
 		point = point->next;
 	}
+}
+
+//Dessine la figure
+void	draw(t_mlx mlx)
+{
+	set_points(mlx, *mlx.point);
+	draw_lines(mlx, *mlx.point);
 }
