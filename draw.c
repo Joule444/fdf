@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:18:33 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 18:11:33 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:43:34 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	set_points(t_mlx mlx, t_point *point)
 		zoom_y = (point->y * mlx.scale.zoom) + mlx.scale.start_y;
 		point->win_x = iso_x(zoom_x, zoom_y);
 		point->win_y = iso_y(zoom_x, zoom_y, point->z, mlx.scale);
+		point = point->next;
+	}
+}
+
+//Dessine les points de la map
+void	draw_points(t_mlx mlx, t_point *point)
+{
+	while (point)
+	{
+		my_mlx_pixel_put(&mlx.img, point->win_x, point->win_y, mlx.color);
 		point = point->next;
 	}
 }
@@ -72,5 +82,6 @@ void	draw_lines(t_mlx mlx, t_point *point)
 void	draw(t_mlx mlx)
 {
 	set_points(mlx, *mlx.point);
+	draw_points(mlx, *mlx.point);
 	draw_lines(mlx, *mlx.point);
 }

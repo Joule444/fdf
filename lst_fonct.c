@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:51:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/06 14:51:06 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:09:16 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_point	*my_lstnew(int x, int y, int z)
 	a->x = x;
 	a->y = y;
 	a->z = z;
+	a->real_z = z;
 	a->next = NULL;
 	return (a);
 }
@@ -82,4 +83,5 @@ void	my_lstclear(t_point **lst)
 			*lst = elem;
 		}
 	}
+	free(lst);
 }

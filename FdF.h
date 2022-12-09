@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:27:42 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 18:39:01 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:44:07 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_point
 	unsigned int	color;
 	int				win_x;
 	int				win_y;
+	int				real_z;
 	struct s_point	*next;
 }	t_point;
 
@@ -84,6 +85,7 @@ int		iso_y(int x, int y, int z, t_scale scale);
 
 //Draw
 void	set_points(t_mlx mlx, t_point *point);
+void	draw_points(t_mlx mlx, t_point *point);
 void	draw_lines(t_mlx mlx, t_point *point);
 void	draw(t_mlx mlx);
 

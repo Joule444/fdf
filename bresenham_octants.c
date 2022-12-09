@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:42:06 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/05 15:06:49 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:20:38 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ void	octant_0(t_mlx mlx, t_point *p1, t_point *p2)
 	int	y;
 	int	a;
 	int	dx;
-	int	dy;
 	int	error;
 
 	x = p1->win_x;
 	y = p1->win_y;
 	dx = p2->win_x - p1->win_x;
-	dy = p2->win_y - p1->win_y;
-	a = 2 * dy;
+	a = 2 * (p2->win_y - p1->win_y);
 	error = -dx;
 	while (x < p2->win_x)
 	{
@@ -47,15 +45,13 @@ void	octant_1(t_mlx mlx, t_point *p1, t_point *p2)
 	int	x;
 	int	y;
 	int	a;
-	int	dx;
 	int	dy;
 	int	error;
 
 	x = p1->win_x;
 	y = p1->win_y;
-	dx = p2->win_x - p1->win_x;
 	dy = p2->win_y - p1->win_y;
-	a = 2 * dx;
+	a = 2 * (p2->win_x - p1->win_x);
 	error = -dy;
 	while (y < p2->win_y)
 	{
@@ -77,14 +73,12 @@ void	octant_7(t_mlx mlx, t_point *p1, t_point *p2)
 	int	y;
 	int	a;
 	int	dx;
-	int	dy;
 	int	error;
 
 	x = p1->win_x;
 	y = p1->win_y;
 	dx = p2->win_x - p1->win_x;
-	dy = p1->win_y - p2->win_y;
-	a = 2 * dy;
+	a = 2 * (p1->win_y - p2->win_y);
 	error = -dx;
 	while (x != p2->win_x)
 	{
@@ -105,15 +99,13 @@ void	octant_6(t_mlx mlx, t_point *p1, t_point *p2)
 	int	x;
 	int	y;
 	int	a;
-	int	dx;
 	int	dy;
 	int	error;
 
 	x = p1->win_x;
 	y = p1->win_y;
-	dx = p2->win_x - p1->win_x;
 	dy = y - p2->win_y;
-	a = 2 * dx;
+	a = 2 * (p2->win_x - p1->win_x);
 	error = -dy;
 	while (y != p2->win_y)
 	{

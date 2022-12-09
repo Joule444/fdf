@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:48:57 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/11/25 14:12:11 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:59:10 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,16 @@ void	free_arr(char **arr)
 	}
 	free(arr[i]);
 	free(arr);
+}
+
+//Converti x en isometrique
+int	iso_x(int x, int y)
+{
+	return (x - y);
+}
+
+//Converti y en isometrique
+int	iso_y(int x, int y, int z, t_scale scale)
+{
+	return ((x + y - (z * scale.zoom)) / 2);
 }

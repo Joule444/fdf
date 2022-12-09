@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 18:27:15 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 18:28:45 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:02:27 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	z_up(t_mlx *mlx)
 		elem = elem->next;
 	}
 	set_points(*mlx, *mlx->point);
-	printf("z up\n");
 }
 
 //Diminue les reliefs
@@ -39,29 +38,29 @@ void	z_down(t_mlx *mlx)
 	elem = *mlx->point;
 	while (elem)
 	{
-		if (elem->z != 1 && elem->z != -1)
+		if (elem->z != elem->real_z)
 			elem->z /= 2;
 		elem = elem->next;
 	}
 	set_points(*mlx, *mlx->point);
-	printf("z down\n");
 }
 
 //Zoom
 void	zoom_in(t_mlx *mlx)
 {
+	if (mlx->scale.zoom > 500)
+		return ;
 	mlx->scale.zoom *= 2;
 	if (mlx->scale.zoom <= 0)
 		mlx->scale.zoom = 1;
-	printf("zoom %d\n", mlx->scale.zoom);
 	set_points(*mlx, *mlx->point);
 }
 
 //Dezoom
 void	zoom_out(t_mlx *mlx)
 {
-	mlx->scale.zoom /= 2;
-	printf("zoom %d\n", mlx->scale.zoom);
+	if (mlx->scale.zoom > 1)
+		mlx->scale.zoom /= 2;
 	set_points(*mlx, *mlx->point);
 }
 
@@ -69,5 +68,4 @@ void	zoom_out(t_mlx *mlx)
 void	change_color(t_mlx *mlx)
 {
 	mlx->color *= 1.1;
-	printf("color %d\n", mlx->color);
 }

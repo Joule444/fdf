@@ -6,12 +6,25 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:26:52 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/08 18:42:32 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:00:36 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
+//Ecrase l'ancienne image et dessine la nouvelle
+void	mlx_refresh_image(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
+	mlx->img.img = mlx_new_image(mlx->mlx_ptr, 1920, 1080);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_per_pixel,
+			&mlx->img.line_length, &mlx->img.endian);
+	draw_points(*mlx, *mlx->point);
+	draw_lines(*mlx, *mlx->point);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->img.img, 0, 0);
+}
+
+//Execute une action en fonction de la touche pressee
 void	mlx_move_keys(int keycode, t_mlx *mlx)
 {
 	if (keycode == 119)
@@ -34,10 +47,5 @@ void	mlx_move_keys(int keycode, t_mlx *mlx)
 		change_color(mlx);
 	else
 		return ;
-	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
-	mlx->img.img = mlx_new_image(mlx->mlx_ptr, 1920, 1080);
-	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_per_pixel,
-			&mlx->img.line_length, &mlx->img.endian);
-	draw_lines(*mlx, *mlx->point);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->img.img, 0, 0);
+	mlx_refresh_image(mlx);
 }
