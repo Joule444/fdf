@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:28:03 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/09 17:10:02 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:25:58 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	mlx_close_window(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
 	mlx_destroy_display(mlx->mlx_ptr);
+	my_lstclear(mlx->point);
+	free(mlx->mlx_ptr);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -80,7 +82,5 @@ int	main(int argc, char **argv)
 	mlx_key_hook(mlx.mlx_win, mlx_keypress, &mlx);
 	mlx_hook(mlx.mlx_win, 17, 1L << 17, mlx_close_window, &mlx);
 	mlx_loop(mlx.mlx_ptr);
-	my_lstclear(mlx.point);
-	free(mlx.img.img);
 	return (0);
 }

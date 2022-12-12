@@ -16,7 +16,7 @@ RM        = rm -f
 
 CC        = gcc
 
-FLAGS        = -g3
+FLAGS        = -Wall -Werror -Wextra -g3
 
 FLAGS_LIB    = -lXext -lX11
 

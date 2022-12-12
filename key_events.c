@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 18:27:15 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/09 17:02:27 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:11:30 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 void	z_up(t_mlx *mlx)
 {
 	t_point	*elem;
-	int		zoom_x;
-	int		zoom_y;
 
 	elem = *mlx->point;
 	while (elem)
@@ -32,8 +30,6 @@ void	z_up(t_mlx *mlx)
 void	z_down(t_mlx *mlx)
 {
 	t_point	*elem;
-	int		zoom_x;
-	int		zoom_y;
 
 	elem = *mlx->point;
 	while (elem)

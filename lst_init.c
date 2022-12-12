@@ -6,7 +6,7 @@
 /*   By: jthuysba <jthuysba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:05:38 by jthuysba          #+#    #+#             */
-/*   Updated: 2022/12/05 15:28:15 by jthuysba         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:11:06 by jthuysba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	init_line(t_point **list, char *line, int y)
 	t_point	*elem;
 	char	**arr;
 	char	**parts;
-	int		i;
 	int		x;
 
 	arr = ft_split(line, ' ');
